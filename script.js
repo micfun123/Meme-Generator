@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     const loadImage = (src) => {
+        console.log('Loading image from:', src);  // Log the source URL
         const img = new Image();
         img.src = src;
         img.onload = () => {
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             drawText();
         };
     };
-
+    
     
     const drawText = () => {
         const topText = topTextInput.value.toUpperCase();
@@ -66,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(res => res.json())
             .then(images => {
                 const randomImage = images[Math.floor(Math.random() * images.length)];
+                console.log(randomImage);
                 loadImage(`/templates/${randomImage}`);
             });
     }
