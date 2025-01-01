@@ -1,7 +1,7 @@
 
 ### Meme Generator
 
-A simple web application built with Node.js that allows users to create memes by selecting templates, adding custom text, and generating a meme image with text.
+A simple web application built with Node.js that allows users to create memes by selecting templates, adding custom text, and generating a meme image with text. This is project 1 out of 52. As i do 1 project every week of the year.
 Features
 
     Select meme templates from predefined images or upload your own.
