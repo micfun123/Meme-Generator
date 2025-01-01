@@ -13,21 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.height = 500;
     memeContainer.appendChild(canvas);
 
-    let imageList = []; 
-
-    
-    const fetchImageList = async () => {
-        try {
-            const response = await fetch('${window.location.origin}/api/images');
-            if (!response.ok) {
-                throw new Error('Failed to fetch images');
-            }
-            imageList = await response.json();
-        } catch (error) {
-            console.error('Error fetching images:', error);
-        }
-    };
-
     
     const loadImage = (src) => {
         const img = new Image();
@@ -77,16 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     randomButton.addEventListener('click', (e) => {
         e.preventDefault();
-        if (imageList.length === 0) {
-            alert('No images found. Make sure the templates folder contains images.');
-            return;
-        }
-
-        const randomImage = imageList[Math.floor(Math.random() * imageList.length)];
-        const randomSrc = `${window.location.origin}/templates/${randomImage}`;
-        loadImage(randomSrc);
+        fetch('/api/images')
+            .then(res => res.json())
+            .then(images => {
+                const randomImage = images[Math.floor(Math.random() * images.length)];
+                loadImage(`/templates/${randomImage}`);
+            });
+    }
+    );
+    
     });
-
-
-    fetchImageList();
-});
