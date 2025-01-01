@@ -64,12 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
     randomButton.addEventListener('click', (e) => {
         e.preventDefault();
         fetch('/api/images')
-            .then(res => res.json())
-            .then(images => {
+        .then(res => res.json())
+        .then(images => {
+            if (images.length === 0) {
+                alert('No images found. Make sure the templates folder contains images.');
+            } else {
                 const randomImage = images[Math.floor(Math.random() * images.length)];
-                console.log(randomImage);
                 loadImage(`/templates/${randomImage}`);
-            });
+            }
+        })
+        .catch(error => console.error('Error fetching images:', error));
+    
     }
     );
     
