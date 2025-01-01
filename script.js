@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const fetchImageList = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/images');
+            const response = await fetch('${window.location.origin}/api/images');
             if (!response.ok) {
                 throw new Error('Failed to fetch images');
             }
@@ -83,15 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const randomImage = imageList[Math.floor(Math.random() * imageList.length)];
-        const randomSrc = `http://localhost:3000/templates/${randomImage}`;
+        const randomSrc = `${window.location.origin}/templates/${randomImage}`;
         loadImage(randomSrc);
     });
 
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Meme generated! (Download functionality can be added here.)');
-    });
 
     fetchImageList();
 });
