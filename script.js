@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
     const randomButton = document.querySelector('button[type="menu"]');
     const memeContainer = document.getElementById('meme_container');
+    const downloadButton = document.getElementById('download');
 
     // Create canvas for meme
     const canvas = document.createElement('canvas');
@@ -84,4 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => console.error('Error fetching images:', error));
     });
+
+    downloadButton.addEventListener('click', () => {
+        const url = canvas.toDataURL();
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'meme.png';
+        a.click();
+    });
+
 });
