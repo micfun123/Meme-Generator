@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.lineWidth = 2;
         ctx.textAlign = 'center';
 
-    
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillText(topText, canvas.width / 2, 50);
         ctx.strokeText(topText, canvas.width / 2, 50);
 
