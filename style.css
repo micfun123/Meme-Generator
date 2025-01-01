@@ -1,0 +1,73 @@
+body {
+    background: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#meme_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    padding-top: 50px;
+    gap: 10px;
+}
+
+form {
+    background: rgba(0, 0, 0, 0.6); 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    width: 350px; 
+    text-align: left;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+label {
+    display: block;
+    margin: 5px;
+    font-weight: bold;
+}
+
+input[type="file"],
+input[type="text"],
+button {
+    width: 90%; 
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    background: #00ff00;
+    color: #000;
+    font-weight: bold;
+    width: 96%;
+    cursor: pointer;
+}
+
+canvas {
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
+footer href {
+    color: #fff;
+}
