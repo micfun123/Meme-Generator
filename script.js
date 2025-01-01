@@ -14,33 +14,41 @@ document.addEventListener('DOMContentLoaded', () => {
     memeContainer.appendChild(canvas);
 
     
+    let currentImage = null;
+
     const loadImage = (src) => {
-        console.log('Loading image from:', src);  // Log the source URL
+        console.log('Loading image from:', src); 
         const img = new Image();
         img.src = src;
         img.onload = () => {
+            currentImage = img;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            drawText();
+            drawText(); 
         };
     };
-    
-    
+
     const drawText = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (currentImage) {
+            ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
+        }
+
         const topText = topTextInput.value.toUpperCase();
         const bottomText = bottomTextInput.value.toUpperCase();
 
+       
         ctx.font = '30px Impact';
         ctx.fillStyle = 'white';
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 2;
         ctx.textAlign = 'center';
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
         ctx.fillText(topText, canvas.width / 2, 50);
         ctx.strokeText(topText, canvas.width / 2, 50);
 
-    
+        
         ctx.fillText(bottomText, canvas.width / 2, canvas.height - 30);
         ctx.strokeText(bottomText, canvas.width / 2, canvas.height - 30);
     };
@@ -57,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    
     topTextInput.addEventListener('input', drawText);
     bottomTextInput.addEventListener('input', drawText);
 
@@ -64,18 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
     randomButton.addEventListener('click', (e) => {
         e.preventDefault();
         fetch('/api/images')
-        .then(res => res.json())
-        .then(images => {
-            if (images.length === 0) {
-                alert('No images found. Make sure the templates folder contains images.');
-            } else {
-                const randomImage = images[Math.floor(Math.random() * images.length)];
-                loadImage(`/templates/${randomImage}`);
-            }
-        })
-        .catch(error => console.error('Error fetching images:', error));
-    
-    }
-    );
-    
+            .then(res => res.json())
+            .then(images => {
+                if (images.length === 0) {
+                    alert('No images found. Make sure the templates folder contains images.');
+                } else {
+                    const randomImage = images[Math.floor(Math.random() * images.length)];
+                    loadImage(`/templates/${randomImage}`);
+                }
+            })
+            .catch(error => console.error('Error fetching images:', error));
     });
+});
